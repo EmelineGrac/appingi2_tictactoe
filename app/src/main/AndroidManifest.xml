@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".GameScreen">
         </activity>
+        <activity android:name=".EndGame">
+        </activity>
     </application>
 
 </manifest>

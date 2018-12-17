@@ -10,6 +10,8 @@ import java.util.*
 import android.widget.Toast
 import android.R.attr.data
 import android.app.PendingIntent.getActivity
+import android.content.Intent
+import kotlinx.android.synthetic.main.activity_end_game.*
 
 
 class GameScreen : AppCompatActivity() , View.OnClickListener{
@@ -18,6 +20,7 @@ class GameScreen : AppCompatActivity() , View.OnClickListener{
     var playerTurn = true //player 1
 
     fun check(sign:String){
+        val explicitIntent = Intent(this, EndGame::class.java)
         if (b1.text == sign && b2.text == sign && b3.text ==sign ||
             b1.text == sign && b4.text == sign && b7.text ==sign ||
             b1.text == sign && b5.text == sign && b9.text ==sign ||
@@ -25,15 +28,19 @@ class GameScreen : AppCompatActivity() , View.OnClickListener{
             b3.text == sign && b6.text == sign && b9.text ==sign ||
             b2.text == sign && b5.text == sign && b8.text ==sign ||
             b4.text == sign && b5.text == sign && b6.text ==sign ||
-            b3.text == sign && b5.text == sign && b7.text ==sign )
+            b3.text == sign && b5.text == sign && b7.text ==sign ){
             if (sign == "X")
                 Toast.makeText(this@GameScreen, "Loose",Toast.LENGTH_LONG).show()
             else
                 Toast.makeText(this@GameScreen,"Win",Toast.LENGTH_LONG).show()
+            startActivity(explicitIntent)
+        }
         else if (b1.text != "" && b2.text != "" && b3.text != "" &&
                  b4.text != "" && b5.text != "" && b6.text != "" &&
-                 b7.text != "" && b8.text != "" && b9.text != "" )
-            Toast.makeText(this@GameScreen,"Draw",Toast.LENGTH_LONG).show()
+                 b7.text != "" && b8.text != "" && b9.text != "" ) {
+            Toast.makeText(this@GameScreen, "Draw", Toast.LENGTH_LONG).show()
+            startActivity(explicitIntent)
+        }
     }
 
     fun changeTurn(){
